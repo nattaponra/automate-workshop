@@ -1,0 +1,5 @@
+.idea
+workshops/10-working-with-project/laravel-quickstart/dockers/web/db
+workshops/10-working-with-project/laravel-quickstart/dockers/web/lb/logs
+workshops/10-working-with-project/laravel-quickstart/dockers/web/web1/logs
+workshops/10-working-with-project/laravel-quickstart/dockers/web/web2/logs
