@@ -1,0 +1,20 @@
+
+Workshop 13 : Create your deployment config
+
+1. Create new git repositories and checkout to projects dir project/laravel-quickstart-config
+
+2. Create branch internal and checkout
+
+3. Copy files from 13-deployment-config/internal to project/laravel-quickstart-config/config
+
+4. Commit and push internal branch
+
+5. Checkout master branch
+
+6. Then create production branch and checkout
+
+7. Copy files from 13-deployment-config/production to project/laravel-quickstart-config/config
+
+8. Commit and push production branch
+
+9. Now you have configuration for internal and production ready to deploy

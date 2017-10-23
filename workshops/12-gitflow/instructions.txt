@@ -1,0 +1,28 @@
+
+Workshop 12 : Understand git-flow
+
+1. Create account at https://github.com/
+
+2. Download and install SourceTree
+
+3. Create new git repositories and checkout to projects dir project/laravel-quickstart-source
+
+4. Copy source from functional test to project/laravel-quickstart-source
+
+5. Commit and push master branch.
+
+6. Initialize git flow
+
+7. Tag version 1.0 in master branch
+
+8. Create new feature branch "finish-task"
+
+9. Add code for new feature "finish-task"
+
+10. Finish feature branch "finish-task" and merge into develop
+
+11. Checkout master branch and merge develop into master
+
+12. Tag version 2.0 in master branch
+
+13. Now you will have 2 versions of sourcecode ready to deploy to internal and production
