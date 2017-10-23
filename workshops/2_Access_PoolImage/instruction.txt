@@ -1,0 +1,10 @@
+Workshop 2: Pull Image
+
+Pull and Verify image
+1. docker pull 3dsinteractive/nginx:1.12		
+2. docker pull 3dsinteractive/php-fpm:7.1
+3. docker pull 3dsinteractive/mysql:5.7
+4. docker pull 3dsinteractive/composer:7.1
+5. docker pull phpmyadmin/phpmyadmin
+6. docker images 				==> check sizing and detail of all image
+7. docker inspect 3dsinteractive/nginx:1.12
