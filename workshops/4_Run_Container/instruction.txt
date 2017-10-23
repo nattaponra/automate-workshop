@@ -1,14 +1,14 @@
 Workshop 4: Run Container from Image
 
-1. NGINX Web Server
-	3.1 run docker for nginx web server by command
+NGINX Web Server
+	1. run docker for nginx web server by command
 	docker run -dt --name nginxtest -p 80:8080 -p 443:8443 3dsinteractive/nginx:1.12
 
-	3.2 open browser with url: http://localhost https://localhost
+	2. open browser with url: http://localhost https://localhost
 
-	3.3 access shell to container with command: "docker exec -it nginxtest sh"
+	3. access shell to container with command: "docker exec -it nginxtest sh"
 
-	3.4 Check file index.html and pwd for path with command: "more index.html"
+	4. Check file index.html and pwd for path with command: "more index.html"
 
 	*Result:
 	-----------------------------------------------------------------
@@ -39,7 +39,7 @@ Commercial support is available at
 </html>
 	-----------------------------------------------------------------
 
-	3.5 Check path of container by command: "pwd", "exit"
-	3.6 Stop container and remove from system by command:
+	5. Check path of container by command: "pwd", "exit"
+	6. Stop container and remove from system by command:
 		docker stop nginxtest
 		docker rm nginxtest
