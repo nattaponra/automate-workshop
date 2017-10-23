@@ -1,0 +1,5 @@
+.idea
+laravel-quickstart/dockers/web/db
+laravel-quickstart/dockers/web/lb/logs
+laravel-quickstart/dockers/web/web1/logs
+laravel-quickstart/dockers/web/web2/logs
