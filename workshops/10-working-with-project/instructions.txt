@@ -11,9 +11,15 @@ Workshop 10: Working with local project
 127.0.0.1 laravel-quickstart.local
 127.0.0.1 laravel-quickstart-db.local
 
+5. Start docker
+# ./start-docker.sh
+
 6. run migration using docker-compose exec
 # ./migrate.sh
 
 7. browse laravel-quickstart.local in browser
 
 8. browse laravel-quickstart-db.local in browser
+
+9. Stop dockers
+# ./stop-docker.sh
