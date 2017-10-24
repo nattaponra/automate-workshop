@@ -7,6 +7,7 @@ Workshop 15 : Create your own jenkins server
 2. Create user jenkins with uid = 1001
 # sudo useradd -u 1001 --no-create-home jenkins
 # sudo mkdir -p /bitnami/jenkins && sudo chown jenkins:jenkins /bitnami
+# sudo mkdir -p /var/www/html && sudo chown jenkins:jenkins /var/www/html
 
 3. Install docker on ubuntu
 # sudo apt-get update
@@ -33,27 +34,31 @@ alias pull-jenkins='docker pull 3dsinteractive/jenkins:2.81'
 alias start-jenkins='docker run --rm --name jenkins -d -p 80:8080 -e JENKINS_USERNAME=my_username -e JENKINS_PASSWORD=my_password -v /bitnami/jenkins:/bitnami/jenkins -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker 3dsinteractive/jenkins:2.81'
 alias stop-jenkins='docker stop jenkins'
 alias pull-composer='docker pull 3dsinteractive/composer:7.1'
+alias pull-nginx='docker pull 3dsinteractive/nginx:1.12'
+alias start-nginx='docker run --rm --name sourcemaster -d -p 8080:8080 -v /var/www/html:/app 3dsinteractive/nginx:1.12'
+alias stop-nginx='docker stop sourcemaster'
 alias docker-rmi-dangling='docker rmi $(docker images -f "dangling=true" -q)'
 
 6. Exit and re-connect to server to allow docker to run without sudo
 # exit
 # ssh -i pem-files/automate-workshop.pem ubuntu@<your-server-ip>
 
-7. Try with jenkins
+7. Pull all required images
 # pull-jenkins
 # pull-composer
-# docker images
-# start-jenkins
-# docker ps
-# stop-jenkins
+# pull-nginx
 
-8. Start jenkins and access through browser
+8. Start all containers
+# start-jenkins
+# start-nginx
+
+9. Start jenkins and access through browser
 # start-jenkins
 # docker ps
 <enter jenkins ip address into your browser address bar>
 <enter username and password from the previous step>
 
-9. Create 1st job to test if docker+jenkins work
+10. Create 1st job to test if docker+jenkins work
 - 6.1 Create a new job
 - 6.2 Choose Freestyle project and name project "test-docker"
 - 6.3 Press OK
@@ -61,3 +66,7 @@ alias docker-rmi-dangling='docker rmi $(docker images -f "dangling=true" -q)'
 - 6.5 Enter => sudo docker run --rm hello-world
 - 6.6 Save
 - 6.7 Build now
+
+11. Open sourcemaster url
+<enter jenkins ip address into your browser address bar with port 8080>
+// You will see forbidden page
