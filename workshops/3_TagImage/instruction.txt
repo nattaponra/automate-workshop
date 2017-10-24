@@ -1,0 +1,7 @@
+Workshop 3: Tag and Push Image
+
+1. List image by command: docker images
+2. Tag image to your name: "docker tag 3dsinteractive/nginx:1.12 <account>/nginx:1.12"
+	Ex: docker tag 3dsinteractive/nginx:1.12 praparn/nginx:1.12
+3. List image by command: docker images 
+4. Inspect image by command: "docker inspect 3dsinteractive/nginx:1.12"
