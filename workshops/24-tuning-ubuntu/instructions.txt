@@ -58,7 +58,7 @@ net.core.wmem_default = 31457280
 net.core.wmem_max = 12582912
 
 # Increase number of incoming connections
-net.core.somaxconn = 4096
+net.core.somaxconn = 65536
 
 # Increase number of incoming connections backlog
 net.core.netdev_max_backlog = 65536
