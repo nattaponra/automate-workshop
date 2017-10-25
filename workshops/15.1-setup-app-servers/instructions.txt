@@ -1,0 +1,31 @@
+
+Workshop 15 : Create your own app servers
+
+1. ssh to app servers
+# ssh -i pem-files/automate-workshop.pem ubuntu@<your-app-server-ip>
+
+2. Create user 1001 with uid = 1001
+# sudo useradd -u 1001 --no-create-home 1001
+
+3. Create www and dockers dir
+# sudo mkdir -p /var/www && sudo chown 1001:1001 /var/www
+# sudo mkdir -p /var/dockers && sudo chown 1001:1001 /var/dockers
+
+4. Install docker on ubuntu
+# sudo apt-get update
+# sudo apt-get install -y curl
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+# sudo apt-get update
+# apt-cache policy docker-ce
+# sudo apt-get install -y docker-ce
+# sudo systemctl status docker
+docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2017-10-24 02:46:33 UTC; 4s ago
+<press q to quit>
+
+5. Add ubuntu and 1001 to docker group
+# sudo usermod -a -G docker ubuntu
+# sudo usermod -a -G docker 1001
+# exit

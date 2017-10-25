@@ -1,13 +1,13 @@
 
 Workshop 15 : Create your own jenkins server
 
-1. ssh to server
-# ssh -i pem-files/automate-workshop.pem ubuntu@<your-server-ip>
+1. ssh to jenkins server
+# ssh -i pem-files/automate-workshop.pem ubuntu@<your-jenkins-server-ip>
 
-2. Create user jenkins with uid = 1001
-# sudo useradd -u 1001 --no-create-home jenkins
-# sudo mkdir -p /bitnami/jenkins && sudo chown jenkins:jenkins /bitnami
-# sudo mkdir -p /var/www/html && sudo chown jenkins:jenkins /var/www/html
+2. Create user 1001 with uid = 1001
+# sudo useradd -u 1001 --no-create-home 1001
+# sudo mkdir -p /bitnami/jenkins && sudo chown 1001:1001 /bitnami
+# sudo mkdir -p /var/www/html && sudo chown 1001:1001 /var/www/html
 
 3. Install docker on ubuntu
 # sudo apt-get update
@@ -23,9 +23,9 @@ docker.service - Docker Application Container Engine
    Active: active (running) since Tue 2017-10-24 02:46:33 UTC; 4s ago
 <press q to quit>
 
-4. Add ubuntu and jenkins to docker group
+4. Add ubuntu and 1001 to docker group
 # sudo usermod -a -G docker ubuntu
-# sudo usermod -a -G docker jenkins
+# sudo usermod -a -G docker 1001
 
 5. Create alias
 # vim ~/.bashrc
