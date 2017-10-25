@@ -15,10 +15,6 @@ services:
         image: 3dsinteractive/nginx:1.12
         depends_on:
             - web1-phpfpm
-        volumes:
-            - ./dockers/web/web1/logs:/opt/bitnami/nginx/logs
-            - ./dockers/web/web1/nginx:/bitnami/nginx
-            - ./web:/app
     web1-phpfpm:
         image: 3dsinteractive/php-fpm:7.1
         volumes:
@@ -28,10 +24,6 @@ services:
         image: 3dsinteractive/nginx:1.12
         depends_on:
             - web2-phpfpm
-        volumes:
-            - ./dockers/web/web2/logs:/opt/bitnami/nginx/logs
-            - ./dockers/web/web2/nginx:/bitnami/nginx
-            - ./web:/app
     web2-phpfpm:
         image: 3dsinteractive/php-fpm:7.1
         volumes:
