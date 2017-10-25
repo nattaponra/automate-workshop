@@ -1,2 +1,37 @@
 
-Workshop 16 : Create deployment scripts
+Workshop 16 : Create deploy scripts
+
+// Config deploy scripts
+1. Create new git and name it "deploy-scripts"
+
+2. Copy files from 16-deployment-scripts/deploy-scripts to your git directory
+
+3. Replace following variable in deploy-scripts/laravel-quickstart/internal/deploy.sh and deploy-scripts/laravel-quickstart/production/deploy.sh
+ <your-jenkins-server-ip> = your jenkins server ip address
+ <your-app-server-ip> = your app server ip address
+ <your-github-repository> = your github repository name
+
+4. Commit and push deploy-scripts into master branch
+
+5. Open Jenkins url in browser
+
+6. Create deployment scripts project
+    6.1 Create a new job
+    6.2 Choose Freestyle project and name project "00-update-deploy-scripts"
+    6.3 Press OK
+    6.4 Under Build section, Add build step -> Execute Shell
+    6.5 Enter command belows
+sudo docker run --rm -i \
+      -v /bitnami/jenkins/1001/deploy-scripts:/app \
+      3dsinteractive/git-client:1.0 \
+      clone https://$GIT_USER:$GIT_PASS@github.com/<your-github-repository>/deploy-scripts.git .
+    6.6 Save
+    6.7 Build now
+    6.8 Click Configure
+    6.9 Change Command to
+sudo docker run --rm -i \
+      -v /bitnami/jenkins/1001/deploy-scripts:/app \
+      3dsinteractive/git-client:1.0 \
+      pull
+    6.10 Save
+    6.11 Build now
