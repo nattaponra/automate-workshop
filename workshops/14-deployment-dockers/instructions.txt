@@ -1,20 +1,31 @@
 
 Workshop 14 : Create your deployment dockers
 
-1. Create new git repositories and checkout to projects dir project/laravel-quickstart-dockers
+1. Create new git repositories "laravel-quickstart-dockers" and checkout to your projects directory
 
-2. Create branch internal and checkout
+2. Create README.md
+# echo "laravel-quickstart-dockers" >> README.md
 
-3. Copy files from 14-deployment-dockers/internal to project/laravel-quickstart-dockers/dockers
+3. Commit and push README.md into master branch
 
-4. Commit and push internal branch
+4. Create branch internal and checkout internal
 
-5. Checkout master branch
+5. Copy folder dockers from 14-deployment-dockers/internal to laravel-quickstart-dockers/dockers using command line
+# cp -r internal/dockers <your-laravel-quickstart-dockers-project-path>
 
-6. Then create production branch and checkout
+6. Commit and push internal branch
 
-7. Copy files from 14-deployment-dockers/production to project/laravel-quickstart-dockers/dockers
+7. Checkout master branch
 
-8. Commit and push production branch
+8. Then create production branch from master branch and checkout
 
-9. Now you have dockers container configuration for internal and production ready to deploy
+9. Copy folder dockers from 14-deployment-dockers/production to laravel-quickstart-dockers/dockers
+# cp -r production/dockers <your-laravel-quickstart-dockers-project-path>
+
+10. Commit and push production branch
+
+11. Now you will have 3 directories ready for deploy
+
+laravel-quickstart-source
+laravel-quickstart-config
+laravel-quickstart-dockers
