@@ -1,4 +1,4 @@
-Workshop 24 : Tuning Ubuntu for production :: Tuning sysctl.conf
+Workshop 22 : Tuning Ubuntu for production :: Tuning sysctl.conf
 
 sysctl : System Control
 

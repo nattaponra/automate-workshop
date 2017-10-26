@@ -1,5 +1,5 @@
 
-Workshop 12 : Understand git-flow
+Workshop 08 : Understand git-flow
 
 1. Create account at https://github.com/
 

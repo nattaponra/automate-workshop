@@ -1,3 +1,3 @@
 
-Workshop 19 : Deploy new feature
+Workshop 17 : Deploy new feature
 

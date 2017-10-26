@@ -1,5 +1,5 @@
 
-Workshop 18 : Deploy production project
+Workshop 16 : Deploy production project
 
 1. Create deploy production project
     1.1 Create a new job
