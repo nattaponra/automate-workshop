@@ -9,12 +9,12 @@ services:
             - 8082:8080
         restart: always
         volumes:
-            - /var/www/laravel-quickstart.com:/app
-            - /var/dockers/laravel-quickstart.com/nginx:/bitnami/nginx
-            - /var/dockers/laravel-quickstart.com/logs:/opt/bitnami/nginx/logs
+            - /var/www/laravel-quickstart-production.com:/app
+            - /var/dockers/laravel-quickstart-production.com/nginx:/bitnami/nginx
+            - /var/dockers/laravel-quickstart-production.com/logs:/opt/bitnami/nginx/logs
     phpfpm:
         image: 3dsinteractive/php-fpm:7.1
         restart: always
         volumes:
-            - /var/www/laravel-quickstart.com:/app
-            - /var/dockers/laravel-quickstart.com/php-fpm:/bitnami/php-fpm
+            - /var/www/laravel-quickstart-production.com:/app
+            - /var/dockers/laravel-quickstart-production.com/php-fpm:/bitnami/php-fpm
