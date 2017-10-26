@@ -175,7 +175,16 @@ function redeploy() {
     done
 }
 
+function runtest() {
+    SOURCE_ZIP=$1
+    DOCKER_ZIP=$2
+    ssh -o StrictHostKeyChecking=no -i $SERVER_PEM $SERVERS "bash -s" < $BASE/runtest.sh $SRC_MASTER_URL $SOURCE_ZIP $SERVER_SOURCE_PATH $DOCKER_ZIP $SERVER_DOCKER_PATH
+    exit $?
+}
+
 function run() {
+
+    local CMD=$1
 
     checkEnv
 
@@ -194,6 +203,11 @@ function run() {
     local DOCKER_ZIP="$FINISH_DIR/$PROJECT_NAME-docker.tar.gz"
     copyToMaster $DOCKER_DIR/dockers $DOCKER_ZIP
 
-    #remote update
-    redeploy $(basename $SOURCE_ZIP) $(basename $DOCKER_ZIP)
+    if [ $CMD = "test" ]
+    then
+        runtest $(basename $SOURCE_ZIP) $(basename $DOCKER_ZIP)
+    else
+        redeploy $(basename $SOURCE_ZIP) $(basename $DOCKER_ZIP)
+    fi
+
 }
