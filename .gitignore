@@ -2,3 +2,4 @@
 automate-workshop.pem
 workshops/07_Functional_Test/laravel-quickstart/dockers/web/db-test/data/data
 workshops/07_Functional_Test/laravel-quickstart/dockers/web/db-test
+.DS_Store
