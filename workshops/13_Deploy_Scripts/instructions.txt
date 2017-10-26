@@ -1,5 +1,5 @@
 
-Workshop 16 : Create deploy scripts
+Workshop 13 : Create deploy scripts
 
 1. Create new git and name it "deploy-scripts"
 

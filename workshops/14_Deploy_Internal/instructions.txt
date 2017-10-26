@@ -1,5 +1,5 @@
 
-Workshop 17 : Deploy internal project with test and without test
+Workshop 14 : Deploy internal project with test and without test
 
 1. Create deploy internal project
     1.1 Create a new job
