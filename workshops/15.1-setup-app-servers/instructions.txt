@@ -25,7 +25,12 @@ docker.service - Docker Application Container Engine
    Active: active (running) since Tue 2017-10-24 02:46:33 UTC; 4s ago
 <press q to quit>
 
-5. Add ubuntu and 1001 to docker group
+5. Install docker-compose
+# sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
+# docker-compose --version
+
+6. Add ubuntu and 1001 to docker group
 # sudo usermod -a -G docker ubuntu
 # sudo usermod -a -G docker 1001
 # exit
