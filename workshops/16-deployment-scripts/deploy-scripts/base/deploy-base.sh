@@ -120,7 +120,7 @@ function copyRemote() {
 }
 
 function composerUpdate() {
-    sudo docker run -i --rm -v $SOURCE_DIR/$SOURCE_SUBDIR:/app $COMPOSER_IMAGE update
+    sudo docker run -i --rm -v $SOURCE_DIR/$SOURCE_SUBDIR:/app $COMPOSER_IMAGE install
 }
 
 function getDateNow {
