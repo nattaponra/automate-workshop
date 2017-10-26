@@ -23,6 +23,7 @@ class ExampleTest extends TestCase
              ->see('Task 3');
     }
 
+
     public function test_tasks_can_be_created()
     {
         $this->visit('/')->dontSee('Task 1');
