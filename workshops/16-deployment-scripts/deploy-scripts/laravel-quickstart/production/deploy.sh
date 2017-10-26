@@ -5,7 +5,7 @@ SERVER_ENV=$2
 RELEASE_BRANCH=$3
 RELEASE_VERSION=$4
 
-PROJECT_NAME="laravel-quickstart-production"
+PROJECT_NAME="laravel-quickstart-production.com"
 SITE_NAME="laravel-quickstart-production.com"
 
 BASE="/bitnami/jenkins/1001/deploy-scripts/base"
@@ -19,7 +19,6 @@ SRC_MASTER_URL="http://<your-jenkins-server-ip>:8080"
 SERVERS="ubuntu@<your-app-server-ip>"
 SERVER_DOCKER_PATH="/var/dockers/$SITE_NAME"
 SERVER_SOURCE_PATH="/var/www/$SITE_NAME"
-SERVER_PEM="/bitnami/jenkins/1001/pem/laravel-quickstart.pem"
 
 #GITS
 GITREPO_URL="https://$GIT_USER:$GIT_PASS@github.com/<your-github-username>"
