@@ -53,3 +53,12 @@ services:
         environment:
             - MYSQL_USERNAME=my_user
             - PMA_HOST=mysql
+    mysqltest:
+        image: 3dsinteractive/mysql:5.7
+        volumes:
+            - ./dockers/web/db-test/data:/bitnami/mysql
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_USER=my_user
+            - MYSQL_PASSWORD=my_password
+            - MYSQL_DATABASE=my_database
