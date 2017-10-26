@@ -35,16 +35,19 @@ sudo docker run --rm -i \
       -v /bitnami/jenkins/1001/deploy-scripts:/app \
       3dsinteractive/git-client:1.0 \
       clone https://$GIT_USER:$GIT_PASS@github.com/<your-github-username>/deploy-scripts.git .
-    6.6 Save
+    6.6 Apply
     6.7 Under Build Environment Section check "Use secret text(s) or file(s)"
     6.8 Add Bindings "Username and password (separated)"
-    6.9 Enter GIT_USER
-    6.7 Build now
-    6.8 Click Configure
-    6.9 Change Command to
+    6.9 Enter "GIT_USER" in Username Variable Textbox
+    6.10 Enter "GIT_PASS" Password Variable Textbox
+    6.11 Choose Your credential under Credentials dropdown
+    6.12 Apply
+    6.13 Build now
+    6.14 Click Configure
+    6.15 Change Command to
 sudo docker run --rm -i \
       -v /bitnami/jenkins/1001/deploy-scripts:/app \
       3dsinteractive/git-client:1.0 \
       pull
-    6.10 Save
-    6.11 Build now
+    6.16 Save
+    6.17 Build now
