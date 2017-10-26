@@ -2,35 +2,31 @@ Workshop 25 : Tuning NGINX for production
 
 Nginx = N-GIN-X = Engine-X
 
-:: Nginx Configuration Structure ::
+1. Default configuration file location
+
+  /etc/nginx/nginx.conf
+
+2. Basic command and option
+
+  2.1 Start Nginx web server
+
+    # nginx
+
+  2.2 Reload configuration
+
+    # nginx -s reload
+
+  2.3 Stop Nginx web server
+
+    # nginx -s stop
+
+3. Nginx Configuration Structure
 
 ```
 main
  |
   `-> http > server > location
 ```
-
-# Default config file location
-> /etc/nginx/nginx.conf
-
-:: Basic command ::
-
-```
-nginx
-```
-> start nginx
-
-```
-nginx -s reload
-```
-> reload nginx
-
-```
-nginx -s stop
-```
-> stop nginx
-
-:: Configuration Structure ::
 
 ```
 # main context
@@ -75,147 +71,146 @@ http {
 }
 ```
 
-:: Tuning ::
+4. Tuning Nginx
 
-# main block, context tuning
+  4.1 main block, context tuning
 
-```
-worker_processes 4;
-worker_rlimit_nofile 500000;
-```
+  ```
+    worker_processes 4;
+    worker_rlimit_nofile 500000;
+  ```
 
-> Get number of processes
+  Get number of processes
 
-grep processor /proc/cpuinfo | wc -l
+    # grep processor /proc/cpuinfo | wc -l
 
-worker_processes
-> Defines the number of worker processes., auto = autodetected
+  - worker_processes
+      Defines the number of worker processes., auto = autodetected
 
-worker_rlimit_nofile
-> The limit on the maximum number of open files
+  - worker_rlimit_nofile
+      The limit on the maximum number of open files
 
-# events block
+  4.2 events block
 
-```
-events {
-    worker_connections  200240;
-    use epoll;
-    multi_accept on;
-}
-```
+    ```
+    events {
+        worker_connections  200240;
+        use epoll;
+        multi_accept on;
+    }
+    ```
 
-worker_connections
-> Maximum number of simultaneous connections that can be opened by a worker process
+    - worker_connections
+        Maximum number of simultaneous connections that can be opened by a worker process
 
-use epoll
-> event notification mechanism, Linux 2.6+
+    - use epoll
+        Event notification mechanism, Linux 2.6+
 
-multi_accept
-> A worker process will accept all new connections at a time.
+    - multi_accept
+        A worker process will accept all new connections at a time.
 
-:: ulimit - user limit ::
 
-# Run in terminal
+FYI : ulimit - user limit
 
-```
-ulimit -a
-```
-> show all
+  - Show all limit
 
-```
-ulimit -n
-```
-> show ulimit
+    # ulimit -a
 
-```
-ulimit -n 200240
-```
-> set ulimit open file
+  - Show number of oopen file
 
-# http block
+    # ulimit -n
 
-```
-http {
-  ...
+  - Set limit
+    Example. set open file
 
-  client_body_buffer_size     128k; # Most client buffers are coming from POST method form submissions
-  client_max_body_size        10m;  # Sets the max body buffer size, Error 413
-  client_header_buffer_size   1k;   # Sets buffer size for reading client request header, default 1k
-  large_client_header_buffers 4 4k; # The maximum number and size of buffers used for reading large client request header.
+    # ulimit -n 200240
 
-  sendfile    on;
-  tcp_nopush  on;
-  tcp_nodelay on;
+    4.3 http block
 
-  keepalive_timeout  65;
-  keepalive_requests 100000;
+      ```
+      http {
+        ...
 
-  gzip on;
-  gzip_http_version 1.0;
-  gzip_comp_level 2;
-  gzip_proxied any;
-  gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+        client_body_buffer_size     128k; # Most client buffers are coming from POST method form submissions
+        client_max_body_size        10m;  # Sets the max body buffer size, Error 413
+        client_header_buffer_size   1k;   # Sets buffer size for reading client request header, default 1k
+        large_client_header_buffers 4 4k; # The maximum number and size of buffers used for reading large client request header.
 
-  ...
+        sendfile    on;
+        tcp_nopush  on;
+        tcp_nodelay on;
 
-  proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=web:10m;
+        keepalive_timeout  65;
+        keepalive_requests 100000;
 
-  upstream web {
+        gzip on;
+        gzip_http_version 1.0;
+        gzip_comp_level 2;
+        gzip_proxied any;
+        gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+        ...
+
+        proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=web:10m;
+
+        upstream web {
+            ...
+            server web1:8080;
+            server web2:8080;
+        }
+
+        ...
+      }
+      ```
+
+    4.4 server block
+
+      ```
+      server {
+        listen 80;
+        server_name example.com;
+        ...
+
+        # CORS = Cross Origin Resource Sharing, AJAX API's Call
+
+        add_header Access-Control-Allow-Origin $http_origin always;
+        add_header Access-Control-Allow-Credentials true always;
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS, HEAD' always;
+        add_header Access-Control-Allow-Headers 'Content-Type, Cache-Control, X-Requested-With, X-Prototype-Version' always;
+
+        ...
+      }
+      ```
+
+    4.5 location block
+
+      ```
       ...
-      server web1:8080;
-      server web2:8080;
-  }
 
-  ...
-}
-```
+      location / {
+          proxy_pass http://web;
+          proxy_redirect off;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-# server block
+          proxy_connect_timeout      90;
+          proxy_send_timeout         90;
+          proxy_read_timeout         90;
+          proxy_buffer_size          4k;
+          proxy_buffers              4 32k;
+          proxy_busy_buffers_size    64k;
+          proxy_temp_file_write_size 64k;
 
-```
-server {
-  ...
+          # Caching
+          proxy_cache web;
+          proxy_cache_valid 200 302 10m;
+          proxy_cache_valid 404 1m;
+          add_header  X-Cache-Status $upstream_cache_status;
+          expires     10m;
 
-  # CORS = Cross Origin Resource Sharing, AJAX API's Call
+      }
+      ...
 
-  add_header Access-Control-Allow-Origin $http_origin always;
-  add_header Access-Control-Allow-Credentials true always;
-  add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, OPTIONS, HEAD' always;
-  add_header Access-Control-Allow-Headers 'Content-Type, Cache-Control, X-Requested-With, X-Prototype-Version' always;
-
-  ...
-}
-```
-
-# location block
-
-```
-...
-
-location / {
-    proxy_pass http://web;
-    proxy_redirect off;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-    proxy_connect_timeout      90;
-    proxy_send_timeout         90;
-    proxy_read_timeout         90;
-    proxy_buffer_size          4k;
-    proxy_buffers              4 32k;
-    proxy_busy_buffers_size    64k;
-    proxy_temp_file_write_size 64k;
-
-    # Caching
-    proxy_cache web;
-    proxy_cache_valid 200 302 10m;
-    proxy_cache_valid 404 1m;
-    add_header  X-Cache-Status $upstream_cache_status;
-    expires     10m;
-
-}
-...
-
-```
+      ```
 

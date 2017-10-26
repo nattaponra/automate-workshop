@@ -1,18 +1,44 @@
 Workshop 24 : Tuning Ubuntu for production :: Tuning sysctl.conf
 
-Config file : /etc/sysctl.conf
+sysctl : System Control
 
-# Show all sysctl
-sysctl -a
+1. Configuration file
+  File location at /etc/sysctl.conf
 
-# Change config
-sysctl -w fs.file-max=2000000
+2. Show sysctl configuration
 
-or
+  2.1 Show all configuration
 
-echo 2000000 > /proc/sys/fs/file-max
+    # sysctl -a
 
-----------------------
+  2.2 Show value for a single parameter
+
+    # sysctl parameter.name
+
+    Example.
+
+    # sysctl fs.file-max
+
+    or use grep
+
+    # sysctl -a | grep fs.file-max
+
+3. Tuning sysctl
+
+  3.1 Change value single parameter
+
+    # sysctl -w parameter-name=value-to-set
+
+    Example: set fs.file-max to 2000000
+
+    # sysctl -w fs.file-max=2000000
+
+    or use echo redirect to file
+
+    # echo 2000000 > /proc/sys/fs/file-max
+
+  3.2 Edit file /etc/sysctl.conf
+    Example configuration
 
 ### IMPROVE SYSTEM MEMORY MANAGEMENT ###
 
@@ -84,8 +110,8 @@ net.ipv4.tcp_max_tw_buckets = 1440000
 net.ipv4.tcp_tw_recycle = 1
 net.ipv4.tcp_tw_reuse = 1
 
-----------------------
 
-# Load Changes
-sysctl -p
+4. Load Changes
+
+  # sysctl -p
 
