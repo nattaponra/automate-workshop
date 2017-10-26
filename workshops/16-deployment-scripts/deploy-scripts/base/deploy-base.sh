@@ -183,6 +183,8 @@ function run() {
     gitUpdate $CONFIG_DIR $CONFIG_REPO $CONFIG_ENV
     gitUpdate $SOURCE_DIR $SOURCE_REPO $RELEASE_BRANCH $RELEASE_VERSION
 
+    composerUpdate
+
     #sync file to build dir
     rsyncHard $SOURCE_DIR/$SOURCE_SUBDIR $BUILD_DIR
     #override config in build dir
