@@ -6,8 +6,7 @@ Workshop 15 : Create your own jenkins server
 
 2. Create user 1001 with uid = 1001
 # sudo useradd -u 1001 --no-create-home 1001
-# sudo mkdir -p /bitnami/jenkins && sudo chown 1001:1001 /bitnami
-# sudo mkdir -p /var/www/html && sudo chown 1001:1001 /var/www/html
+# sudo mkdir -p /bitnami/jenkins && sudo chown -Rf 1001:1001 /bitnami
 
 3. Install docker on ubuntu
 # sudo apt-get update
@@ -31,11 +30,11 @@ docker.service - Docker Application Container Engine
 # vim ~/.bashrc
 // Put lines belows to the end of ~/.bashrc notice that you can replace my_username and my_password to your choice
 alias pull-jenkins='docker pull 3dsinteractive/jenkins:2.81'
-alias start-jenkins='docker run --rm --name jenkins -d -p 80:8080 -e JENKINS_USERNAME=my_username -e JENKINS_PASSWORD=my_password -v /bitnami/jenkins:/bitnami/jenkins -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker 3dsinteractive/jenkins:2.81'
+alias start-jenkins='docker run --rm --name jenkins -d -p 80:8080 -e JENKINS_USERNAME=my_username -e JENKINS_PASSWORD=my_password -v /bitnami/jenkins:/bitnami/jenkins -v /bitnami/nginx:/bitnami/nginx -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker 3dsinteractive/jenkins:2.81'
 alias stop-jenkins='docker stop jenkins'
 alias pull-composer='docker pull 3dsinteractive/composer:7.1'
 alias pull-nginx='docker pull 3dsinteractive/nginx:1.12'
-alias start-nginx='docker run --rm --name sourcemaster -d -p 8080:8080 -v /var/www/html:/app 3dsinteractive/nginx:1.12'
+alias start-nginx='docker run --rm --name sourcemaster -d -p 8080:8080 -v /bitnami/jenkins/sourcemaster:/app 3dsinteractive/nginx:1.12'
 alias stop-nginx='docker stop sourcemaster'
 alias docker-rmi-dangling='docker rmi $(docker images -f "dangling=true" -q)'
 
@@ -48,8 +47,11 @@ alias docker-rmi-dangling='docker rmi $(docker images -f "dangling=true" -q)'
 # pull-composer
 # pull-nginx
 
-8. Start all containers
+8. Start jenkins and nginx
 # start-jenkins
+# sudo mkdir -p /bitnami/jenkins/sourcemaster
+# echo 'Source master' | sudo tee /bitnami/jenkins/sourcemaster/index.html
+# sudo chown -Rf 1001:1001 /bitnami/jenkins/sourcemaster
 # start-nginx
 
 9. Start jenkins and access through browser
