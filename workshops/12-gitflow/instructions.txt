@@ -5,9 +5,9 @@ Workshop 12 : Understand git-flow
 
 2. Download and install SourceTree
 
-3. Create new git repositories and checkout to projects dir project/laravel-quickstart-source
+3. Create new git repositories name "laravel-quickstart-source" and checkout to projects directory
 
-4. Copy source from functional test to project/laravel-quickstart-source
+4. Copy source from functional test to laravel-quickstart-source
 
 5. Commit and push master branch.
 

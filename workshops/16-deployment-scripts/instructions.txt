@@ -1,19 +1,29 @@
 
 Workshop 16 : Create deploy scripts
 
-// Config deploy scripts
 1. Create new git and name it "deploy-scripts"
 
 2. Copy files from 16-deployment-scripts/deploy-scripts to your git directory
+# cp -r deploy-scripts/* <your-deploy-scripts-path>
 
-3. Replace following variable in deploy-scripts/laravel-quickstart/internal/deploy.sh and deploy-scripts/laravel-quickstart/production/deploy.sh
+3. Open your text editor and replace following variable in
+deploy-scripts/laravel-quickstart/internal/deploy.sh and deploy-scripts/laravel-quickstart/production/deploy.sh
+
  <your-jenkins-server-ip> = your jenkins server ip address
  <your-app-server-ip> = your app server ip address
- <your-github-repository> = your github repository name
+ <your-github-username> = your github user name
 
 4. Commit and push deploy-scripts into master branch
 
-5. Open Jenkins url in browser
+5. Open Jenkins url in browser http://<your-jenkins-server-ip>
+
+6. Create your github credential
+    6.1 Click menu Credentials
+    6.2 Click sub menu System
+    6.3 Click Global credentials (unrestricted)
+    6.4 Click Add Credentials
+    6.5 Enter username, password and id (github)
+    6.6 OK
 
 6. Create deployment scripts project
     6.1 Create a new job
@@ -24,8 +34,11 @@ Workshop 16 : Create deploy scripts
 sudo docker run --rm -i \
       -v /bitnami/jenkins/1001/deploy-scripts:/app \
       3dsinteractive/git-client:1.0 \
-      clone https://$GIT_USER:$GIT_PASS@github.com/<your-github-repository>/deploy-scripts.git .
+      clone https://$GIT_USER:$GIT_PASS@github.com/<your-github-username>/deploy-scripts.git .
     6.6 Save
+    6.7 Under Build Environment Section check "Use secret text(s) or file(s)"
+    6.8 Add Bindings "Username and password (separated)"
+    6.9 Enter GIT_USER
     6.7 Build now
     6.8 Click Configure
     6.9 Change Command to

@@ -22,7 +22,7 @@ SERVER_SOURCE_PATH="/var/www/$SITE_NAME"
 SERVER_PEM="/bitnami/jenkins/1001/pem/laravel-quickstart.pem"
 
 #GITS
-GITREPO_URL="https://$GIT_USER:$GIT_PASS@github.com/<your-github-repository>"
+GITREPO_URL="https://$GIT_USER:$GIT_PASS@github.com/<your-github-username>"
 SOURCE_REPO="$GITREPO_URL/laravel-quickstart-source.git"
 CONFIG_REPO="$GITREPO_URL/laravel-quickstart-config.git"
 DOCKER_REPO="$GITREPO_URL/laravel-quickstart-dockers.git"
