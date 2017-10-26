@@ -1,2 +1,25 @@
 
 Workshop 18 : Deploy production project
+
+1. Create deploy production project
+    1.1 Create a new job
+    1.2 Choose Freestyle project and name project "laravel-quickstart-production"
+    1.3 Press OK
+    1.4 Under Build section, Add build step -> Execute Shell
+    1.5 Enter command belows
+/bitnami/jenkins/1001/deploy-scripts/laravel-quickstart/production/deploy.sh production production master 1.0
+    1.6 Apply
+    1.7 Under Build Environment Section check "Use secret text(s) or file(s)"
+    1.8 Add Bindings "Secret file"
+    1.9 Enter "SERVER_PEM" in variable textbox
+    1.10 Choose "automate-workshop.pem" under Credentials dropdown
+    1.11 Apply
+    1.12 Add Bindings "Username and password (separated)"
+    1.13 Enter "GIT_USER" in Username Variable Textbox
+    1.14 Enter "GIT_PASS" Password Variable Textbox
+    1.15 Choose Your credential under Credentials dropdown
+    1.16 Apply
+
+2. Deploy to internal by clicking "Build"
+
+3. Access internal project by point browser to url http://<your-app-server-ip>:8082
