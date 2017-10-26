@@ -23,6 +23,3 @@ Workshop 17 : Deploy internal project with test and without test
 2. Deploy to internal by clicking "Build"
 
 3. Access internal project by point browser to url http://<your-app-server-ip>:8081
-
-
-
