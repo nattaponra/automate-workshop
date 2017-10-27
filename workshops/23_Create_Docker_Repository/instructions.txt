@@ -1,2 +1,23 @@
 
-Workshop 21: Create your docker repository
+Workshop 23: Create your docker repository
+
+1. Register docker hub
+Open web browser and register account at https://hub.docker.com
+
+2. Login docker hub
+# docker login
+Username: <your-user-name>
+Password: <your-password>
+
+3. Change directory to dockerfiles/nginx
+
+4. Open docker-build.sh with text editor
+
+5. Replace <your-docker-repository> with your own docker repository
+
+6. Build docker image
+# ./docker-build.sh 1.12
+
+7. You will have images <your-docker-repository>/nginx:1.12
+
+8. Do the same steps with all docker file in workshop.
