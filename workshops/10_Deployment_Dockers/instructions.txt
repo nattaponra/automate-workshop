@@ -19,7 +19,7 @@ Workshop 10 : Create your deployment dockers
 
 8. Then create production branch from master branch and checkout
 
-9. Copy folder dockers from 14-deployment-dockers/production to laravel-quickstart-dockers/dockers
+9. Copy folder dockers from 10_Deployment_Dockers/production to laravel-quickstart-dockers/dockers
 # cp -r production/dockers <your-laravel-quickstart-dockers-project-path>
 
 10. Commit and push production branch
