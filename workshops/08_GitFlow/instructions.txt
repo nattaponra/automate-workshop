@@ -3,7 +3,7 @@ Workshop 08 : Understand git-flow
 
 1. Create account at https://github.com/
 
-2. Download and install SourceTree
+2. Download and install SourceTree https://www.sourcetreeapp.com/
 
 3. Create new git repositories name "laravel-quickstart-source" and checkout to projects directory
 
