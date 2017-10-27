@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web']], function () {
     /**
      * Add New Task
      */
-    Route::post('/task', function (Request $request) {
+    Route::post('/task', function (Request $request, \App\Helpers\ReserveWord $reserveWord) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
@@ -36,6 +36,10 @@ Route::group(['middleware' => ['web']], function () {
             return redirect('/')
                 ->withInput()
                 ->withErrors($validator);
+        }
+
+        if($reserveWord->isContainsReserveWord($request->name)){
+            return redirect('/');
         }
 
         $task = new Task;

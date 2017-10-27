@@ -2,29 +2,25 @@
 
 use App\Task;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class UATTest extends TestCase
 {
     use DatabaseTransactions;
 
-
-    public function test_tasks_are_displayed_on_the_dashboard()
+    public function testTaskList_Given3TaskInDatabase_WhenBrowseToTaskListPage_ExpectTaskListShowAllTasks()
     {
         factory(Task::class)->create(['name' => 'Task 1']);
         factory(Task::class)->create(['name' => 'Task 2']);
         factory(Task::class)->create(['name' => 'Task 3']);
 
         $this->visit('/')
-             ->see('Task 1')
-             ->see('Task 2')
-             ->see('Task 3');
+            ->see('Task 1')
+            ->see('Task 2')
+            ->see('Task 3');
     }
 
-
-    public function test_tasks_can_be_created()
+    public function testTaskList_GivenNoTaskInList_WhenPressAddTask_ExpectNewTaskHasBeenShown()
     {
         $this->visit('/')->dontSee('Task 1');
 
@@ -34,8 +30,7 @@ class ExampleTest extends TestCase
             ->see('Task 1');
     }
 
-
-    public function test_long_tasks_cant_be_created()
+    public function testTaskList_WhenPressAddTaskWith300CharactersTaskName_ExpectWhoopsHasBeenShown()
     {
         $this->visit('/')
             ->type(str_random(300), 'name')
@@ -43,3 +38,4 @@ class ExampleTest extends TestCase
             ->see('Whoops!');
     }
 }
+
