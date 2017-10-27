@@ -16,7 +16,11 @@ Password: <your-password>
 5. Replace <your-docker-repository> with your own docker repository
 
 6. Build docker image
+MAC
 # ./docker-build.sh 1.12
+Windows
+# docker build -t <your-docker-repository>/php-fpm:1.12 1.12
+# docker push <your-docker-repository>/php-fpm:1.12
 
 7. You will have images <your-docker-repository>/nginx:1.12
 
