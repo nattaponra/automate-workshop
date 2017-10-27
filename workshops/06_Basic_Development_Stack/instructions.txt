@@ -25,20 +25,20 @@ edit c:\windows\system32\drivers\etc\hosts
 for MAC
 # ./start-docker.sh
 for Windows:
-start-docker.bat
+# start-docker.bat
 
 6. run migration using docker-compose exec
 for MAC
 # ./migrate.sh
 for Windows:
-migrate.bat
+# migrate.bat
 
-7. browse laravel-quickstart.local in browser
+7. browse http://laravel-quickstart.local in browser
 
-8. browse laravel-quickstart-db.local in browser
+8. browse http://laravel-quickstart-db.local in browser
 
 9. Stop dockers
 for MAC:
 # ./stop-docker.sh
 for Windows:
-stop-docker.bat
+# stop-docker.bat
