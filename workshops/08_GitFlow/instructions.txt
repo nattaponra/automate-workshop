@@ -15,20 +15,20 @@ Workshop 08 : Understand git-flow
 ** Replase <workshop-dir> with actual dir
 # cp -R <workshop-dir>/07_PhpUnit/laravel-quickstart/* <workshop-dir>/08_GitFlow/laravel-quickstart-source/
 
-5. Commit and push master branch.
+7. Commit and push master branch.
 
-6. Initialize git flow
+8. Initialize git flow
 
-7. Tag version 1.0 in master branch
+9. Tag version 1.0 in master branch
 
-8. Create new feature branch "finish-task"
+10. Create new feature branch "delete_all_tasks_api"
 
-9. Add code for new feature "finish-task"
+11. Add code for new feature "delete_all_tasks_api"
 
-10. Finish feature branch "finish-task" and merge into develop
+12. Finish feature branch "delete_all_tasks_api" and merge into develop
 
-11. Checkout master branch and merge develop into master
+13. Create new release and tag it 2.0
 
-12. Tag version 2.0 in master branch
+14. Finish release branch
 
-13. Now you will have 2 versions of sourcecode ready to deploy to internal and production
+13. Now you will have 2 versions of sourcecode ready to deploy
