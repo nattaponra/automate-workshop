@@ -34,3 +34,32 @@ for MAC
 for Windows:
 runtest.bat
 
+7. Stop dockers
+for MAC:
+# ./stop-docker.sh
+for Windows:
+# stop-docker.bat
+
+8. Have a look at phpunit.xml
+<env name="DB_CONNECTION" value="mysqltest" />
+
+9. Have a look at web/config/database.php
+'mysqltest' => [
+            'driver'    => 'mysql',
+            'host'      => env('DBTEST_HOST', 'mysqltest'),
+            'database'  => env('DBTEST_DATABASE', 'my_database'),
+            'username'  => env('DBTEST_USERNAME', 'my_user'),
+            'password'  => env('DBTEST_PASSWORD', 'my_password'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+            'engine'    => null,
+        ],
+
+10. Have a look at tests/UATTest.php
+
+11. Have a look at tests/FunctionalTest.php
+
+12. Have a look at UnitTest.php
+
