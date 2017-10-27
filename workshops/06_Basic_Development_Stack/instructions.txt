@@ -1,5 +1,5 @@
 
-Workshop 06: Working with local project
+Workshop 06: Basic Development Stack
 
 1. Go to project directory
 # cd laravel-quickstart
