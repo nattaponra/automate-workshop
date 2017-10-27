@@ -23,12 +23,27 @@ Workshop 08 : Understand git-flow
 
 10. Create new feature branch "delete_all_tasks_api"
 
-11. Add code for new feature "delete_all_tasks_api"
+11. Add code below into app/Http/routes.php
 
-12. Finish feature branch "delete_all_tasks_api" and merge into develop
+    Route::get('/task/delall', function () {
 
-13. Create new release and tag it 2.0
+        $tasks = Task::all();
+        foreach($tasks as $task)
+        {
+            $task->delete();
+        }
 
-14. Finish release branch
+        return response()->json([
+            'success' => true
+        ]);
+    });
 
-13. Now you will have 2 versions of sourcecode ready to deploy
+12. Commit and push into branch "delete_all_tasks_api"
+
+13. Finish feature branch "delete_all_tasks_api" and merge into develop
+
+14. Create new release and tag it 2.0
+
+15. Finish release branch
+
+16. Now you will have 2 versions of sourcecode ready to deploy
