@@ -7,44 +7,44 @@
     cd laravel-quickstart
     ````
 2. Run composer update using composer image
-   ##### for MAC:
+    ##### for MAC:
     ````
     ./composer-update.sh
     ````
-   ##### for Windows:
+    ##### for Windows:
     ````
     composer-update.bat
     ````
 3. Add hosts for new network name
-   ##### for MAC:
+    ##### for MAC:
     edit /private/etc/hosts add
     ````
     127.0.0.1 laravel-quickstart.local
     127.0.0.1 laravel-quickstart-db.local
     
     ````
-   #####for Windows:
-   edit c:\windows\system32\drivers\etc\hosts
+    #####for Windows:
+    edit c:\windows\system32\drivers\etc\hosts
     ````
     
     127.0.0.1 laravel-quickstart.local
     127.0.0.1 laravel-quickstart-db.local
     ````
 4. Start docker
-   #####for MAC
+    #####for MAC
     ````
      ./start-docker.sh
     ````
-   #####for Windows:
+    #####for Windows:
     ````
     start-docker.bat
     ````
 5. run test using docker-compose exec
-   #####for MAC
+    #####for MAC
     ````
      ./runtest.sh
     ````
-   #####for Windows:
+    #####for Windows:
     ````
     runtest.bat
     ````
@@ -59,11 +59,11 @@
      stop-docker.bat
    ````
 8. Have a look at phpunit.xml
-    ````
+   ````
     <env name="DB_CONNECTION" value="mysqltest" />
-    ````
+   ````
 9. Have a look at web/config/database.php
-    ````php
+   ````php
     'mysqltest' => [
                 'driver'    => 'mysql',
                 'host'      => env('DBTEST_HOST', 'mysqltest'),
